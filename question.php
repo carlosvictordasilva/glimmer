@@ -20,6 +20,8 @@
 <?php 
 
 
+if ($_GET["answer1"])$answer1 = $_GET["answer1"];
+if ($_GET["answer2"])$answer2 = $_GET["answer2"];
 
 if (!empty($_GET["question"])){
   $question = $_GET["question"]; 
@@ -45,10 +47,20 @@ if (!empty($_GET["question"])){
             </div>
         </div>
         <div id="boxR">
-            
+          <h2 class="answer1Box">
+            <?php
+            if($answer1) { echo $answer1;}
+            else  {echo "YES";}                 
+             ?>
+          </h2>
         </div>
         <div id="boxL">
-            
+          <h2 class="answer2Box">
+            <?php
+            if($answer2) { echo $answer2;}
+            else  {echo "NO";}                 
+             ?>
+          </h2>
         </div>
     </div>
 
@@ -129,12 +141,12 @@ if (y < gaze_center.y) {
 };
 
 if (left) {
- document.getElementById("boxL").style.backgroundColor = "blue";
+ document.getElementById("boxL").style.backgroundColor = "#7a62d3";
  document.getElementById("boxR").style.backgroundColor = "white";
                                      //console.log('oiiiiiiiiiiiii');
    }else{
            document.getElementById("boxL").style.backgroundColor = "white";
-           document.getElementById("boxR").style.backgroundColor = "blue";
+           document.getElementById("boxR").style.backgroundColor = "#7a62d3";
            };
 
                            /*     if (bottom && left) {

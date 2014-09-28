@@ -48,3 +48,6 @@ div#badge {
   font-size: 20px;
   margin-top: 40px;
 }
+#boxL > h2, #boxR > h2 {
+  margin: 50% auto;
+}

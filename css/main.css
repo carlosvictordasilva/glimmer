@@ -10,7 +10,7 @@ header{
 }
     
 section { 
-  margin-bottom:40px;
+  margin-bottom:-30px;
   padding-top:40px;
   margin-top:-40px;
   min-height:400px;
@@ -29,13 +29,14 @@ section {
   
 section .page-header{
   margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 footer{
   display:inline-block;
   width:100%;
   min-width:100%;
-  padding: 0;
+  padding: 25px;
   min-height:100px;
   background:#e0e0e0;
 }
@@ -70,4 +71,62 @@ footer{
 .subtitle-hope {
   font-size: 14px;
   font-style: italic;
+  margin-right: 50px;
+}
+
+.home-question {
+  font-size: 53px;
+  color: #fff;
+  background: transparent;
+  text-align: center;
+  border: 0;
+}
+.home-question::-webkit-input-placeholder {
+   color: #fff;
+}
+.home-question:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+.home-question::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+.home-question:-ms-input-placeholder {  
+   color: #fff;  
+}
+
+
+.home-answer {
+  font-size: 40px;
+  color: #fff;
+  background: transparent;
+  text-align: center;
+  border: 0;
+  width: 340px;
+}
+.home-answer::-webkit-input-placeholder {
+   color: #fff;
+}
+.home-answer:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+.home-answer::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+.home-answer:-ms-input-placeholder {  
+   color: #fff;  
+}
+h1.home-tagline {
+  font-size: 40px;
+}
+
+.logo {
+  vertical-align: middle;
+  width: 42px;
+  margin-top: -10px;
+  margin-right: 20px;
+}
+
+.title-glimmer {
+  margin-left: 10px;
+  margin-right: 40px;
 }

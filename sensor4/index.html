@@ -20,7 +20,7 @@
       <div class="container-narrow">
         <div class="hero-unit">
           <div class="sensor-question-box">
-            <h1 class="sensor-question">Your Question Here</h1>
+            <h1 class="sensor-question">What type of music do you want to listen?</h1>
           </div>
           <div align="center">
             <canvas id="mainCanvas"></canvas>
@@ -29,16 +29,16 @@
           </div>
         </div>
         <div id="boxBR">
-          <h2>ANSWER 4</h2>
+          <h2>Pop</h2>
         </div>
         <div id="boxTR">
-          <h2>ANSWER 2</h2>
+          <h2>Classical</h2>
         </div>
         <div id="boxBL">
-          <h2>ANSWER 3</h2>
+          <h2>Rock</h2>
         </div>
         <div id="boxTL">
-          <h2>ANSWER 1</h2>
+          <h2>Jazz</h2>
         </div>
     </div>
       
@@ -120,25 +120,25 @@ if (y < gaze_center.y) {
 };
 
                                 if (bottom && left) {
-                                    document.getElementById("boxBL").style.backgroundColor = "blue";
+                                    document.getElementById("boxBL").style.backgroundColor = "#7a62d3";
                                      //console.log('oiiiiiiiiiiiii');
                                 }else{
                                     document.getElementById("boxBL").style.backgroundColor = "white";
                                 };
                                  if (bottom && !left) {
-                                    document.getElementById("boxBR").style.backgroundColor = "blue";
+                                    document.getElementById("boxBR").style.backgroundColor = "#7a62d3";
                                     // console.log('');
                                 }else{
                                     document.getElementById("boxBR").style.backgroundColor = "white";
                                 };
                                 if (!bottom && !left) {
-                                    document.getElementById("boxTR").style.backgroundColor = "blue";
+                                    document.getElementById("boxTR").style.backgroundColor = "#7a62d3";
                                      //console.log('oiiiiiiiiiiiii');
                                 }else{
                                     document.getElementById("boxTR").style.backgroundColor = "white";
                                 };
                                  if (!bottom && left) {
-                                    document.getElementById("boxTL").style.backgroundColor = "blue";
+                                    document.getElementById("boxTL").style.backgroundColor = "#7a62d3";
                                      //console.log('oiiiiiiiiiiiii');
                                 }else{
                                     document.getElementById("boxTL").style.backgroundColor = "white";

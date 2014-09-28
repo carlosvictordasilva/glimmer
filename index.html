@@ -12,7 +12,7 @@
     <!-- Latest compiled and minified CSS BS 3.0. latest minifined -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet" rel="stylesheet">
-
+<script src="js/jquery.js" type="text/javascript"></script>
     <!-- FontAwesome icons -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
     <!--[if lt IE 7]>
@@ -40,12 +40,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">GLIMMER <span class="subtitle-hope">(of hope)</a>
+        <!-- <a class="navbar-brand" href="#">GLIMMER <span class="subtitle-hope">(of hope)</a> -->
+        <a class="navbar-brand" href="#"><img class="logo" src="logo.png"><span class="title-glimmer">Glimmer</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#top-section">Home</a></li>
-          <li><a href="sensor2">2-option Question</a></li>
+            <li class="active"><a href="">Home</a></li>
+          <li><a href="question.php">2-option Question</a></li>
           <li><a href="sensor4">4-option Question</a></li> 
           <li><a href="about">About</a></li> 
           <li><a href="contact">Contact</a></li>
@@ -60,9 +61,23 @@
         <div class="container">
           <div class="row">
             <div class="text-center col-sm-12 col-lg-12">
-              <h1 class="">Type a Question</h1>
+             <h1 class="home-tagline">Welcome to Glimmer - your eyes speaking to the world</h1>
+             <hr>
+            <form action="question.php" method="GET">
+            <div>
+              <input class="home-question" name="question" placeholder="Type a Question"></input>
+            </div>
+            <div>
+              <input class="home-answer" name="answer2" placeholder="answer 2"></input>
+              <input class="home-answer" name="answer1" placeholder="answer 1"></input>
+            </div>
+
+            <input type="submit" class="sr-only" />
+            </form>
+
+              
               <p class="lead">
-                Answer 1  |  Answer 2  |  Answer 3  |  Asnwer 4
+                
               </p>
 
             </div>
@@ -71,17 +86,39 @@
           </div>
       </header>
 
+<script>
+jQuery(document).ready(function() {
+  jQuery('.question').each(function(){
 
+    $(this).attr('href', "question.php?question="+$(this).text());
+  });
+});
+</script>
 <!--  SECTION-1 -->  
 <section id="Section-1">
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
     <div class="page-header text-center col-sm-12 col-lg-12">
-      <h2>Or select from pre-registered questions:</h2>
+      <h2>Or use one of the pre-registered questions:</h2>
     </div> 
   </div>  
   <div class="row">
+     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <p><a class="btn btn-default question" href="question.php?question=">Do you feel comfortable?</a></p>
+        <p>Yes | No</p>
+      </div>
+     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <p><a class="btn btn-default question" href="question.php?question=">Are you hungry?</a></p>
+        <p>Yes | No</p>
+     </div>
+     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <p><a class="btn btn-default question" href="question.php?question=">Are you thirsty?</a></p>
+        <p>Yes | No</p>
+      </div>
+  </div>
+  <hr>
+<!--   <div class="row">
        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
           <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
           <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
@@ -95,34 +132,19 @@
           <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
         </div>
   </div>
-  <hr>
+  <hr> -->
   <div class="row">
        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
+          <p><a class="btn btn-default" href="sensor4">What type of music do you want to listen to?</a></p>
+          <p>I. Pop | Classical | Rock | Jazz</p>
         </div>
        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
+          <p><a class="btn btn-default" href="sensor4">Which movie do you want to see?</a></p>
+          <p>Harry Potter | Toys | Transformer | The Lord of the rings</p>
        </div>
        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
-        </div>
-  </div>
-  <hr>
-  <div class="row">
-       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
-        </div>
-       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
-       </div>
-       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <p><a class="btn btn-default" href="sensor4">Do you feel comfortable?</a></p>
-          <p>Yes! | No, I'm thirsty | No, I'm hungry | No, I'm tired</p>
+          <p><a class="btn btn-default" href="sensor4">What kind of book do you like me to read?</a></p>
+          <p>Fantasy | Comics | History | Drama</p>
         </div>
   </div>
   <hr>
@@ -135,7 +157,6 @@
     <footer id="foot-sec">
 
     <div class="container">
-    <hr>
       <div class="row">
         <div class="col-sm-12 col-lg-12">
           <p>© 2014 Glimmer</p>
@@ -148,7 +169,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js" type="text/javascript"></script>
+    
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- PAGE CUSTOM SCROLLER -->

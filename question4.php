@@ -1,61 +1,148 @@
 <html lang="en">
     <head>
-    	<meta charset="utf-8">
-    	<title>Glimmer</title>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<meta name="description" content="">
-    	<meta name="author" content="">
-      <link rel="stylesheet" type="text/css" href="../css/sensor4.css">
-    	<!-- Le Bootstrap styles -->
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+      <meta charset="utf-8">
+      <title>Glimmer</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+            
+            .container-narrow {
+                margin: 0 auto;
+                max-width: 700px;
+            }
+
+            div#badge {
+                width: 141px;
+                height: 141px;
+                position: fixed;
+                top: 0;
+                right: 0;
+            }
+            #boxBL,#boxBR,#boxTL,#boxTR{
+                width: 200px;
+                height: 200px;
+                background-color: transparent;
+                position: fixed;
+              
+                border: 5px solid black
+            }
+             #boxL,#boxR{
+                width: 200px;
+                height: 100%;
+                background-color: transparent;
+                position: fixed;
+              
+                border: 5px solid black
+            }
+             #boxL{
+               
+                bottom: 0;
+                left: 0;
+               
+            }
+             #boxR{
+              
+              bottom: 0;
+                right: 0;
+               
+            }
+             #boxBL{
+               
+                bottom: 0;
+                left: 0;
+               
+            }
+             #boxBR{
+              
+              bottom: 0;
+                right: 0;
+               
+            }
+             #boxTL{
+                
+                top: 0;
+                left: 0;
+               
+            }
+             #boxTR{
+                
+                top: 0;
+                right: 0;
+               
+            }
+            .boxChange{
+                background-color: green;
+            }
+      </style>
+      <!-- Le Bootstrap styles -->
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+      <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="js/html5shiv.js"></script>
           <![endif]-->
 
     </head>
 
+
+<?php 
+
+
+
+if (!empty($_GET["question"])){
+  $question = $_GET["question"]; 
+  
+}else{
+  $question = "Do you want to eat now?";
+};
+
+?>
     <body screen_capture_injected="true">
-      <div class="container-narrow">
-        <div class="hero-unit">
-          <div class="sensor-question-box">
-            <h1 class="sensor-question">Your Question Here</h1>
-          </div>
-          <div align="center">
-            <canvas id="mainCanvas"></canvas>
-            <video style="display: none;" autoplay></video>
-            <p class="back-arrow"><a href="../index.html"><i class="fa fa-arrow-left"></i> Back to main page </a></p>
-          </div>
-        </div>
-        <div id="boxBR">
-          <h2>ANSWER 4</h2>
-        </div>
-        <div id="boxTR">
-          <h2>ANSWER 2</h2>
-        </div>
-        <div id="boxBL">
-          <h2>ANSWER 3</h2>
-        </div>
-        <div id="boxTL">
-          <h2>ANSWER 1</h2>
-        </div>
-    </div>
-      
+  
+        <div class="container-narrow">
+           
+            <div class="hero-unit">
+              <h2 style="padding-bottom:10;"><?php echo $question; ?>
+              <p id="answer"></p>
+              </h2>
+                <div align="center">
+                  <canvas id="mainCanvas"></canvas>
+                  <video style="display: none;" autoplay></video>
+                </div>
+            </div>
+            <div id="boxR">
+                
+            </div>
+            <div id="boxL">
+                
+            </div>
+            <!-- <div id="boxBL">
+                
+            </div>
+            <div id="boxTL">
+                
+            </div> -->
 
-		<!-- JQuery and Bootstrap Javascript files -->
-		<script src="../js/jquery.js" ></script>
 
-		<!-- Concuss.js and Canvas utilities -->
-		<script text="text/javascript" src="../build/jsfeat.js"></script>
-		<script text="text/javascript" src="../build/compatibility.js"></script>
-		<script text="text/javascript" src="../build/camgaze.js"></script>
-		<script text="text/javascript" src="../cascades/eye.js"></script>
-		<script text="text/javascript" src="../cascades/frontalface.js"></script>
+      </div>
+
+    <!-- JQuery and Bootstrap Javascript files -->
+    <script src="js/jquery.js" ></script>
+
+    <!-- Concuss.js and Canvas utilities -->
+    <script text="text/javascript" src="build/jsfeat.js"></script>
+    <script text="text/javascript" src="build/compatibility.js"></script>
+    <script text="text/javascript" src="build/camgaze.js"></script>
+    <script text="text/javascript" src="cascades/eye.js"></script>
+    <script text="text/javascript" src="cascades/frontalface.js"></script>
         <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/js/parallel/parallel.min.js"></script> -->
         <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/js/haar&#45;detector.min.js"></script> -->
         <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/cascades/haarcascade_frontalface_alt.js"></script> -->
-		<script text="text/javascript">
+    <script text="text/javascript">
 
 
 
@@ -119,7 +206,16 @@ if (y < gaze_center.y) {
     bottom = false;
 };
 
-                                if (bottom && left) {
+if (left) {
+ document.getElementById("boxL").style.backgroundColor = "blue";
+ document.getElementById("boxR").style.backgroundColor = "white";
+                                     //console.log('oiiiiiiiiiiiii');
+   }else{
+           document.getElementById("boxL").style.backgroundColor = "white";
+           document.getElementById("boxR").style.backgroundColor = "blue";
+           };
+
+                           /*     if (bottom && left) {
                                     document.getElementById("boxBL").style.backgroundColor = "blue";
                                      //console.log('oiiiiiiiiiiiii');
                                 }else{
@@ -144,7 +240,7 @@ if (y < gaze_center.y) {
                                     document.getElementById("boxTL").style.backgroundColor = "white";
                                 };
 
-    ;
+    ;*/
 
 
   if (document.getElementById("eye-mouse-cursor") == undefined) return;
@@ -194,12 +290,36 @@ function move_from_centroid(c) {
   running_yavg.shift();
 
 //console.log(running_xavg);
-  var xavg = running_xavg.reduce(function(a,b) { return a+b }) / running_xavg.length;
-  var yavg = running_yavg.reduce(function(a,b) { return a+b }) / running_yavg.length;
+
+
+  if(typeof running_xavg !== 'undefined' && running_xavg.length > 0){
+    var xavg = running_xavg.reduce(function(a,b) { return a+b }) / running_xavg.length;
+  }else{
+    running_xavg[0] = 541;
+  };
+
+   if(typeof running_yavg !== 'undefined' && running_yavg.length > 0){
+    var yavg = running_yavg.reduce(function(a,b) { return a+b }) / running_yavg.length;
+  }else{
+
+    running_yavg[0] = 541;
+  
+    //running_yavg.push(541);
+  };
+
+
+
   update_cursor(xavg, yavg);
 }
  var output_id = "#keyboard_output";
   function wink(side) {
+
+if (left) {
+ jQuery("#answer").html("YES");
+                                     //console.log('oiiiiiiiiiiiii');
+   }else{
+          jQuery("#answer").html("NO");
+           };
     console.log("winnnnk---------------------------------------------- ");
     var e = document.elementFromPoint(simx, simy);
     update_cursor(simx, simy);
@@ -240,7 +360,7 @@ $(window).load(function() {
 
 window.onload = function () {
                 var height = 480;
-                var width = 640;
+                var width = 600;
 
                 var cGaze = new camgaze.Camgaze(
                     width, 
@@ -259,7 +379,7 @@ var rtAvg = new Array();
 var rt;
 var lwink_counter = 0;
 var rwink_counter = 0;
-var wink_threshold = 16;
+var wink_threshold = 10;
 for (var i = 0; i < 8; i++){
   runningAvg.push(new camgaze.structures.Point(-1,-1));
  lftAvg.push(new camgaze.structures.Point(-1,-1));
@@ -349,13 +469,25 @@ var frameOp = function (image_data, video) {
     }
   } else if (!calibrating && trackingData.eyeList.length == 1 && gazeList[0] != undefined) {
     var winkEye = gazeList[0].centroid.unfiltered;
-    if (winkEye.distTo(lft) < winkEye.distTo(rt)) {
+   /* if (winkEye.distTo(lft) < winkEye.distTo(rt)) {
       lwink_counter++; rwink_counter = 0;
       if (lwink_counter == wink_threshold) wink("left");
+        jQuery("#boxL").html('hereeeeeeee');
     } else {
       rwink_counter++; lwink_counter = 0;
       if (rwink_counter == wink_threshold) wink("right");
+         jQuery("#boxR").html('hereeeeeeee');
+    }*/
+
+    if (winkEye.distTo(lft) < winkEye.distTo(rt)) {
+      console.log("counter "+lwink_counter);
+      lwink_counter++; rwink_counter = 0;
+      if (lwink_counter == wink_threshold) wink("left");
     }
+  /*if (winkEye.distTo(lft) != winkEye.distTo(rt)) {
+      wink("left");
+  }*/
+
   } else {
     move_from_centroid(average(runningAvg));
   }
@@ -367,6 +499,6 @@ cGaze.setFrameOperator(frameOp);
 
 
 
-		</script>
-	</body>
+    </script>
+  </body>
 </html>

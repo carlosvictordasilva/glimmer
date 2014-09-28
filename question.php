@@ -5,82 +5,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="">
       <meta name="author" content="">
-      <style type="text/css">
-          body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-          }
-            
-            .container-narrow {
-                margin: 0 auto;
-                max-width: 700px;
-            }
-
-            div#badge {
-                width: 141px;
-                height: 141px;
-                position: fixed;
-                top: 0;
-                right: 0;
-            }
-            #boxBL,#boxBR,#boxTL,#boxTR{
-                width: 200px;
-                height: 200px;
-                background-color: transparent;
-                position: fixed;
-              
-                border: 5px solid black
-            }
-             #boxL,#boxR{
-                width: 200px;
-                height: 100%;
-                background-color: transparent;
-                position: fixed;
-              
-                border: 5px solid black
-            }
-             #boxL{
-               
-                bottom: 0;
-                left: 0;
-               
-            }
-             #boxR{
-              
-              bottom: 0;
-                right: 0;
-               
-            }
-             #boxBL{
-               
-                bottom: 0;
-                left: 0;
-               
-            }
-             #boxBR{
-              
-              bottom: 0;
-                right: 0;
-               
-            }
-             #boxTL{
-                
-                top: 0;
-                left: 0;
-               
-            }
-             #boxTR{
-                
-                top: 0;
-                right: 0;
-               
-            }
-            .boxChange{
-                background-color: green;
-            }
-      </style>
+      <link rel="stylesheet" type="text/css" href="css/sensor2.css">
       <!-- Le Bootstrap styles -->
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
       <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="js/html5shiv.js"></script>
@@ -102,33 +30,27 @@ if (!empty($_GET["question"])){
 
 ?>
     <body screen_capture_injected="true">
-  
-        <div class="container-narrow">
-           
-            <div class="hero-unit">
-              <h2 style="padding-bottom:10;"><?php echo $question; ?>
-              <p id="answer"></p>
-              </h2>
-                <div align="center">
-                  <canvas id="mainCanvas"></canvas>
-                  <video style="display: none;" autoplay></video>
-                </div>
+      <div class="container-narrow">
+        <div class="hero-unit">
+          <div class="sensor-question-box">
+            <h2 class="sensor-question">
+              <?php echo $question; ?><br>
+              <span id="answer"></span>
+            </h2>
+          </div>
+            <div align="center">
+              <canvas id="mainCanvas"></canvas>
+              <video style="display: none;" autoplay></video>
+              <p class="back-arrow"><a href="index.html"><i class="fa fa-arrow-left"></i> Back to main page </a></p>
             </div>
-            <div id="boxR">
-                
-            </div>
-            <div id="boxL">
-                
-            </div>
-            <!-- <div id="boxBL">
-                
-            </div>
-            <div id="boxTL">
-                
-            </div> -->
-
-
-      </div>
+        </div>
+        <div id="boxR">
+            
+        </div>
+        <div id="boxL">
+            
+        </div>
+    </div>
 
     <!-- JQuery and Bootstrap Javascript files -->
     <script src="js/jquery.js" ></script>

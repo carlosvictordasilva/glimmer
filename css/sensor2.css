@@ -1,0 +1,50 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+div#badge {
+  width: 141px;
+  height: 141px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+#boxL,#boxR {
+  width: 30%;
+  height: 100%;
+  background-color: transparent;
+  position: fixed;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+ #boxL{
+  bottom: 0;
+  left: 0;
+}
+ #boxR{
+  bottom: 0;
+  right: 0;
+}
+.boxChange{
+  background-color: green;
+}
+.sensor-question-box {
+  top: 0;
+  padding: 0 10% 40px;
+  margin: 0%;
+  height: 70px;
+  text-align: center;
+}
+.sensor-question {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.back-arrow {
+  font-size: 20px;
+  margin-top: 40px;
+}

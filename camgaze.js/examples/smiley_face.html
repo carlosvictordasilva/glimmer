@@ -117,7 +117,7 @@
 
 
 // append required DOM elements
-$('body').before('<div id="eye-mouse-cursor" stylë="height:50px;widht:40px;"></div>');
+$('body').before('<div id="eye-mouse-cursor" style="height:50px;widht:40px;"></div>');
 $('body').after('\
   <canvas id="eye-mouse-canvas"></canvas>\
   <video id="eye-mouse-video" style="display: none; visibility:hidden" autoplay></video>\
@@ -260,7 +260,7 @@ console.log(running_xavg);
 }
  var output_id = "#keyboard_output";
   function wink(side) {
-    //console.log(simx, simy);
+    console.log("winnnnk ");
     var e = document.elementFromPoint(simx, simy);
     update_cursor(simx, simy);
     //if (typeof e.onclick == "function")
@@ -401,6 +401,18 @@ var frameOp = function (image_data, video) {
       image_data = drawer.drawCircle(image_data, eyeCenter, 3, -1, "red");
       image_data = drawer.drawCircle(image_data, lft, 3, -1, "blue");
       image_data = drawer.drawCircle(image_data, rt, 3, -1, "blue");
+
+
+
+ image_data = drawer.drawRectangle(
+                                    image_data,
+                                    eye.eyeData.getHaarRectangle(),
+                                    eye.eyeData.getHaarRectangle().width,
+                                    eye.eyeData.getHaarRectangle().height,
+                                    5,
+                                    "blue"
+                                );
+      
       if (isCalibrated())
         move_from_centroid(eyeCenter);
     }

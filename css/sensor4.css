@@ -1,0 +1,62 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+  
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+div#badge {
+  width: 141px;
+  height: 141px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+#boxBL, #boxBR, #boxTL, #boxTR {
+  width: 30%;
+  height: 50%;
+  background-color: transparent;
+  position: fixed;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+#boxBL > h2, #boxBR > h2, #boxTL > h2, #boxTR > h2 {
+  margin: 40% auto;
+  /*font-size: 30px;*/
+}
+#boxBL{
+  bottom: 0;
+  left: 0;
+}
+ #boxBR{ 
+  bottom: 0;
+  right: 0;
+}
+ #boxTL{
+  top: 0;
+  left: 0;
+}
+ #boxTR{
+  top: 0;
+  right: 0;
+}
+.boxChange{
+  background-color: green;
+}
+.sensor-question-box {
+  top: 0;
+  padding: 0 10%;
+  margin: 0%;
+  height: 70px;
+  text-align: center;
+}
+.sensor-question {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.back-arrow {
+  font-size: 20px;
+  margin-top: 40px;
+}

@@ -1,0 +1,372 @@
+<html lang="en">
+    <head>
+    	<meta charset="utf-8">
+    	<title>Glimmer</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="description" content="">
+    	<meta name="author" content="">
+      <link rel="stylesheet" type="text/css" href="../css/sensor4.css">
+    	<!-- Le Bootstrap styles -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <![endif]-->
+
+    </head>
+
+    <body screen_capture_injected="true">
+          <div class="container-narrow">
+            <div class="hero-unit">
+              <div class="sensor-question-box">
+              <h1 class="sensor-question">Your Question Here</h1>
+              </div>
+              <div align="center">
+                <canvas id="mainCanvas"></canvas>
+                <video style="display: none;" autoplay></video>
+                <p class="back-arrow"><a href="../index.html"><i class="fa fa-arrow-left"></i> Back to main page </a></p>
+              </div>
+            </div>
+            <div id="boxBR">
+              <h2>ANSWER 4</h2>
+            </div>
+            <div id="boxTR">
+              <h2>ANSWER 2</h2>
+            </div>
+            <div id="boxBL">
+              <h2>ANSWER 3</h2>
+            </div>
+            <div id="boxTL">
+              <h2>ANSWER 1</h2>
+            </div>
+        </div>
+      
+
+		<!-- JQuery and Bootstrap Javascript files -->
+		<script src="../js/jquery.js" ></script>
+
+		<!-- Concuss.js and Canvas utilities -->
+		<script text="text/javascript" src="../build/jsfeat.js"></script>
+		<script text="text/javascript" src="../build/compatibility.js"></script>
+		<script text="text/javascript" src="../build/camgaze.js"></script>
+		<script text="text/javascript" src="../cascades/eye.js"></script>
+		<script text="text/javascript" src="../cascades/frontalface.js"></script>
+        <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/js/parallel/parallel.min.js"></script> -->
+        <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/js/haar&#45;detector.min.js"></script> -->
+        <!-- <script type="text/javascript" src="http://foo123.github.io/examples/common/cascades/haarcascade_frontalface_alt.js"></script> -->
+		<script text="text/javascript">
+
+
+
+
+
+
+var prevx = $(window).innerWidth()/2;
+var prevy = $(window).innerHeight()/2;
+var x = prevx;
+var y = prevy;
+var simx = x;
+var simy = y;
+var ampy = 25;
+var ampx = 35;
+
+var running_xavg = new Array();
+var running_yavg = new Array();
+
+
+
+var nearby_link_threshold = 20;
+var nearby_link;
+
+distance = function(x, y, x0, y0) {
+  return Math.sqrt((x -= x0) * x + (y -= y0) * y);
+};
+
+function highlight_nearest_link(x, y) {
+  /*var closest_link = $.nearest({x: x, y: y}, 'a')
+  if (closest_link != undefined) { //&& distance(x, y, closest_link.offset().left, closest_link.offset().top) < nearby_link_threshold) {
+    $(closest_link).addClass("link_focus");
+    if (nearby_link != undefined) $(nearby_link).removeClass("link_focus");
+    nearby_link = closest_link;
+  } else {
+    nearby_link = undefined;
+  }*/
+}
+
+var bottom;
+var left;
+var clicked = false;
+function update_cursor(x, y) {
+    //console.log("posicaox "+ x+ "posicao y:" +y);
+if (x < gaze_center.x) {
+//if (x < eyeCenter.x) {
+    left = true;
+    //console.log("left " + gaze_center.x);
+    /*document.getElementById("boxBL").style.backgroundColor = "blue";
+    document.getElementById("boxBR").style.backgroundColor = "white";*/
+                            
+}else{
+    left = false;
+    //console.log("right");
+    /*document.getElementById("boxBR").style.backgroundColor = "blue";
+    document.getElementById("boxBL").style.backgroundColor = "white";*/
+}
+if (y < gaze_center.y) {
+    bottom = true;
+    //console.log("bottom " + gaze_center.y);
+}else{
+    bottom = false;
+};
+
+                                if (bottom && left) {
+                                    document.getElementById("boxBL").style.backgroundColor = "blue";
+                                     //console.log('oiiiiiiiiiiiii');
+                                }else{
+                                    document.getElementById("boxBL").style.backgroundColor = "white";
+                                };
+                                 if (bottom && !left) {
+                                    document.getElementById("boxBR").style.backgroundColor = "blue";
+                                    // console.log('');
+                                }else{
+                                    document.getElementById("boxBR").style.backgroundColor = "white";
+                                };
+                                if (!bottom && !left) {
+                                    document.getElementById("boxTR").style.backgroundColor = "blue";
+                                     //console.log('oiiiiiiiiiiiii');
+                                }else{
+                                    document.getElementById("boxTR").style.backgroundColor = "white";
+                                };
+                                 if (!bottom && left) {
+                                    document.getElementById("boxTL").style.backgroundColor = "blue";
+                                     //console.log('oiiiiiiiiiiiii');
+                                }else{
+                                    document.getElementById("boxTL").style.backgroundColor = "white";
+                                };
+
+    ;
+
+
+  if (document.getElementById("eye-mouse-cursor") == undefined) return;
+  if (!clicked) document.getElementById("eye-mouse-cursor").style.backgroundColor = "#0f0";// = "url("+chrome.extension.getURL("cursor_images/standard.gif") + ")";
+  document.getElementById("eye-mouse-cursor").style.top=(y+1).toString() + "px";
+  document.getElementById("eye-mouse-cursor").style.left=(x+1).toString() + "px";
+  check_for_scroll(x, y);
+  highlight_nearest_link(x, y);
+}
+
+var min = 5;
+var xmax = $(window).innerWidth()-1;
+var ymax = $(window).innerHeight()-1;
+var gaze_center =  new camgaze.structures.Point(xmax/2, ymax/2);
+
+function set_gaze_center (new_center) {
+  x = new_center.getX();
+  y = new_center.getY();
+  prevx = x; 
+  prevy = y;
+  simx = x;
+  simy = y;
+  for (var i = 0; i < 6; i++) {
+    running_xavg.push(x);
+    running_yavg.push(y);
+  }
+}
+
+function bounds_check() {
+  if (simx < min) simx = min;
+  if (simy < min) simy = min;
+  if (simx >= $(window).innerWidth()) simx = $(window).innerWidth()-1 - min;
+  if (simy >= $(window).innerHeight()) simy = $(window).innerHeight()-1 - min;
+}
+
+function move_from_centroid(c) {
+  prevx = x; prevy = y;
+  x = c.getX();
+  y = c.getY();
+  simx -= (x - prevx) * ampx;
+  simy += (y - prevy) * ampy;
+  
+  bounds_check();
+  running_xavg.push(simx);
+  running_xavg.shift();
+  running_yavg.push(simy);
+  running_yavg.shift();
+
+//console.log(running_xavg);
+  var xavg = running_xavg.reduce(function(a,b) { return a+b }) / running_xavg.length;
+  var yavg = running_yavg.reduce(function(a,b) { return a+b }) / running_yavg.length;
+  update_cursor(xavg, yavg);
+}
+ var output_id = "#keyboard_output";
+  function wink(side) {
+    console.log("winnnnk---------------------------------------------- ");
+    var e = document.elementFromPoint(simx, simy);
+    update_cursor(simx, simy);
+    //if (typeof e.onclick == "function")
+    //  e.onclick.apply(e);
+    //if (typeof e.mousedown == "function") e.mousedown();
+    if (e != null && e.tagName == "A" && e.hasAttribute("HREF")) {
+      clicked = true;
+      window.location.replace(e.getAttribute("HREF"));
+      $("#eye-mouse-cursor").css("background-color","#00f");
+    }
+    if (e != null && $(e).hasClass("osk-key")) {
+      $("#eye-mouse-cursor").css("background-color","#00f");
+      var txt = $(output_id).text() + $(e).text();
+      console.log(txt);
+      $(output_id).text(txt);
+    }
+  }
+$(window).load(function() {
+  update_cursor(simx, simy);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.onload = function () {
+                var height = 480;
+                var width = 640;
+
+                var cGaze = new camgaze.Camgaze(
+                    width, 
+                    height, 
+                    "mainCanvas"
+                );
+  var eye_movement_max = 20;
+var eyeTracker = new camgaze.EyeTracker(width, height);
+var eyeFilter = new camgaze.EyeFilter();
+var drawer = new camgaze.drawing.ImageDrawer();
+//var mappedMovingAverage = new camgaze.structures.MovingAveragePoints( new camgaze.structures.Point(0,0), 10);
+var runningAvg = new Array();
+var lftAvg = new Array();
+var lft;
+var rtAvg = new Array();
+var rt;
+var lwink_counter = 0;
+var rwink_counter = 0;
+var wink_threshold = 16;
+for (var i = 0; i < 8; i++){
+  runningAvg.push(new camgaze.structures.Point(-1,-1));
+ lftAvg.push(new camgaze.structures.Point(-1,-1));
+ rtAvg.push(new camgaze.structures.Point(-1,-1));
+}
+
+function average(pts) {
+  xsum = 0; ysum = 0;
+  for (var i = 0; i < pts.length; i++) {
+    xsum += pts[i].getX();
+    ysum += pts[i].getY();
+  }
+  return new camgaze.structures.Point(xsum/pts.length, ysum/pts.length);
+}
+function reasonable_eye_pos(left, right) {
+  if (!calibrating)
+    return (Math.abs(left.getY() - right.getY()) < eye_movement_max);
+  else
+    return true;
+}
+var calibrating = true;
+
+function isCalibrated() {
+  if (calibrating) {
+    for (var i = 0; i < runningAvg.length; i++) {
+      if (runningAvg[i].getX() < 0 || runningAvg[i].getY() < 0 ||
+          lftAvg[i].getX() < 0 || lftAvg[i].getY() < 0 ||
+          rtAvg[i].getX() < 0 || rtAvg[i].getY() < 0) 
+        return false;
+    }
+  }
+  if (calibrating) {
+    set_gaze_center(average(runningAvg));
+    console.log (" CALIBRATED!!! ");
+  }
+  calibrating = false;
+  return true;
+}
+
+function reCalibrate() {
+  for (var i = 0; i < runningAvg.length; i++) {
+    runningAvg[i] = new camgaze.structures.Point(-1, -1);
+    lftAvg[i] = new camgaze.structures.Point(-1, -1);
+    rtAvg[i] = new camgaze.structures.Point(-1, -1);
+  }
+  calibrating = true;
+}
+
+var frameOp = function (image_data, video) {
+  var lookingPt;
+  var trackingData = eyeTracker.track(image_data, video);
+  var gazeList = eyeFilter.getFilteredGaze(trackingData);
+  if (trackingData.eyeList.length == 2 && gazeList[0] != undefined && gazeList[1] != undefined) {
+    lwink_counter = 0;
+    rwink_counter = 0;
+    gazeList = eyeFilter.getFilteredGaze(trackingData);
+    var lft_eye = gazeList[0].centroid.unfiltered;
+    var rt_eye = gazeList[1].centroid.unfiltered;
+    if (reasonable_eye_pos(lft_eye, rt_eye)) {
+      if (lft_eye.getX() > rt_eye.getX()) {
+        var tmp = lft_eye;
+        lft_eye = rt_eye;
+        rt_eye = tmp;
+      }
+      var ctr_eye = lft_eye.add(rt_eye);
+      runningAvg.push(new camgaze.structures.Point(ctr_eye.getX()/2, ctr_eye.getY()/2));
+      runningAvg.shift();
+
+      lftAvg.push(lft_eye);
+      lftAvg.shift();
+
+     rtAvg.push(rt_eye);
+      rtAvg.shift();
+
+      var eyeCenter = average(runningAvg);
+      lft = average(lftAvg);
+      rt = average(rtAvg);
+      // FOR DEBUGGING PURPOSES
+      image_data = drawer.drawCircle(image_data, eyeCenter, 3, -1, "red");
+      image_data = drawer.drawCircle(image_data, lft, 3, -1, "blue");
+      image_data = drawer.drawCircle(image_data, rt, 3, -1, "blue");
+
+
+
+      if (isCalibrated())
+        move_from_centroid(eyeCenter);
+    }
+  } else if (!calibrating && trackingData.eyeList.length == 1 && gazeList[0] != undefined) {
+    var winkEye = gazeList[0].centroid.unfiltered;
+    if (winkEye.distTo(lft) < winkEye.distTo(rt)) {
+      lwink_counter++; rwink_counter = 0;
+      if (lwink_counter == wink_threshold) wink("left");
+    } else {
+      rwink_counter++; lwink_counter = 0;
+      if (rwink_counter == wink_threshold) wink("right");
+    }
+  } else {
+    move_from_centroid(average(runningAvg));
+  }
+  return image_data;
+};
+cGaze.setFrameOperator(frameOp);
+}
+
+
+
+
+		</script>
+	</body>
+</html>

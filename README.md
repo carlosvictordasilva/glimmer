@@ -17,3 +17,7 @@ http://glimmer.bitballoon.com/
 or 
 
 http://carlosvs.com/glimmer/
+
+We use a javascript library called Camgaze.js
+
+https://github.com/wallarelvo/camgaze
